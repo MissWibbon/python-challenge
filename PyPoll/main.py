@@ -17,6 +17,7 @@ def percentage(part, whole):
 candidate_vote = {}
 candidate_name = []
 percentage = []
+winner = ""
 
 with open(path) as data_file:
     csvreader = csv.reader(data_file)
@@ -45,6 +46,16 @@ with open(path) as data_file:
     #    text_path = os.path.join("election_data.txt")
         #with open(text_path,"w") as txtfile:
            # txtfile.write(output)
+    winning_value = max(khan_count, li_count, correy_count, otooley_count)
+    if (winning_value == khan_count):
+        winner = "Khan"
+    if (winning_value == li_count):
+        winner = "Li"
+    if (winning_value == correy_count):
+        winner = "Correy"
+    else:
+        winner = "O'Tooley"
+
     print("Election Results")
     print("---------------")
     print(f'Total Votes: ', khan_count + li_count + correy_count + otooley_count)
@@ -53,6 +64,8 @@ with open(path) as data_file:
     print("Li: ", li_count)
     print("Correy: ", correy_count)
     print("O'Tooley: ", otooley_count)
+    print('-------------------')
+    print('Winner: ', winner)
         #output=(
         #    f'\nElection Results\n'
         #    f'\------------------')
