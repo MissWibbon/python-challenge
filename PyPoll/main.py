@@ -14,44 +14,45 @@ max_vote_count = 0
 
 def percentage(part, whole):
     return 100 * float(part)/float(whole)
+candidate_vote = {}
+candidate_name = []
+percentage = []
 
 with open(path) as data_file:
-    csvreader = csv.reader(path, delimiter=',')
+    csvreader = csv.reader(data_file)
 
-    candidate_vote = {}
-    candidate_name = []
+    for candidate in csvreader:
+        candidate_name.append(candidate[2])
+        if (candidate[2] == "Khan"):
+            khan_count = khan_count + 1
+        if (candidate[2] == "Correy"):
+            correy_count = correy_count + 1
+        if (candidate[2] == "Li"):
+            li_count = li_count + 1
+        else:
+            otooley_count = otooley_count + 1
+        #percentage=((candidate_vote[candidate]/total_votes)*100)
+        #print(f'{candidate}: {percentage: 2f}% ({candidate_vote[candidate]}) ')
+ 
+        #output += f'{candidate}'
+    #for winner in candidate_vote.keys():
+    #    if candidate_vote[winner]==max(candidate_vote.values()):
+    #        candidate_win = winner
 
-    for row in csvreader:
-        candidate = row[2]
-
-        if candidate not in candidate_name:
-            candidate_name.append(candidate)
-            candidate_vote[candidate]=1
-        
-        candidate_vote[candidate]=candidate_vote[candidate]+1
-
-    total_votes = sum(candidate_vote.value())
-    percentage = []
+    #   print('--------------------')
+    #    print(f'Winner: {candidate_win}')
+        #output += (f'Winner: {candidate_win}')
+    #    text_path = os.path.join("election_data.txt")
+        #with open(text_path,"w") as txtfile:
+           # txtfile.write(output)
     print("Election Results")
     print("---------------")
-
-    output=(
-        f'\nElection Results\n'
-        f'\------------------')
-    print(f'Total Votes: {total_votes}')
+    print(f'Total Votes: ', khan_count + li_count + correy_count + otooley_count)
     print('-------------------')
-    for candidate in candidate_vote:
-        percentage=((candidate_vote[candidate]/total_votes)*100)
-        print(f'{candidate}: {percentage: 2f}% ({candidate_vote[candidate]}) ')
-        output += f'{candidate}'
-    for winner in candidate_vote.keys():
-        if candidate_vote[winner]==max(candidate_vote.values()):
-            candidate_win = winner
-
-        print('--------------------')
-        print(f'Winner: {candidate_win}')
-
-        output += (f'Winner: {candidate_win}')
-        text_path = os.path.join("election_data.txt")
-        with open(text_path,"w") as txtfile:
-            txtfile.write(output)
+    print("Khan: ", khan_count)
+    print("Li: ", li_count)
+    print("Correy: ", correy_count)
+    print("O'Tooley: ", otooley_count)
+        #output=(
+        #    f'\nElection Results\n'
+        #    f'\------------------')

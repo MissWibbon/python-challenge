@@ -19,6 +19,8 @@ with open(path) as data_file:
         total_profit = total_profit + profit
         Daily_Change.append(int(row[1]) - Previous_Profit_Loss)
         Previous_Profit_loss = int(row[1])
-print("Total Month", total_month)
-print(f"Total Profit: ", total_profit)
-print(f"Average Change: ", round(float(sum(Daily_Change)/len(Daily_Change)))*100)
+print("Total Months: ", total_month)
+print(f"Total : $", total_profit)
+print(f"Average Change: $", round(float(sum(Daily_Change)/len(Daily_Change))))
+print(f"Greatest increase in profits: ")
+print(f"Greatest decrease in profits: ")
